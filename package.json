@@ -1,0 +1,37 @@
+{
+  "name": "cordova-plugin-feedback",
+  "version": "0.1.11",
+  "description": "Plugin for Cordova to easily send Email. Available for Android.",
+  "cordova": {
+    "id": "cordova-plugin-feedback",
+    "platforms": [
+      "android",
+      "wp8",
+      "ios",
+      "windows"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joao-batista/cordova-plugin-feedback.git"
+  },
+  "keywords": [
+    "cordova",
+    "phonegap",
+    "feedback",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=3.0.0"
+    }
+  ],
+  "author": "joao-batista",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joao-batista/cordova-plugin-feedback/issues"
+  },
+  "homepage": "https://github.com/joao-batista/cordova-plugin-feedback#readme"
+}
