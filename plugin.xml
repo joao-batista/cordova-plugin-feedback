@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+           id="cordova-sms-plugin"
+      version="0.1.11">
+    <name>Cordova Feedback Plugin</name>
+    <description>Plugin for Cordova to easily send Email. Available for Android.</description>
+    <license>MIT</license>
+    <keywords>cordova,phonegap,email</keywords>
+
+    <engines>
+      <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/feedback.js" name="Sms">
+        <clobbers target="window.feedback" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Feedback">
+                <param name="android-package" value="com.cordova.plugins.feedback.Feedback"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.SEND_SMS" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-feature android:name="android.hardware.telephony" android:required="false" />
+        </config-file>
+
+        <source-file src="src/android/Feedback.java" target-dir="src/com/cordova/plugins/feedback" />
+    </platform>
+
+</plugin>
