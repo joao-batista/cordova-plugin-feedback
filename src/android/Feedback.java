@@ -50,18 +50,18 @@ public class Feedback extends CordovaPlugin {
         try {
 
             String mensage = args.getString(0);
-            String email = args.getString(1);
+            String user = args.getString(1);
             String senha = args.getString(2);
             
             SimpleEmail email = new SimpleEmail();
             email.setHostName("smtp.gmail.com");
             email.setSmtpPort(465);
-            email.addTo(email, "Pague Fácil");
-            email.setFrom(email, "Pague Fácil");
+            email.addTo(user, "Pague Fácil");
+            email.setFrom(user, "Pague Fácil");
             email.setSubject("Test message");
             email.setMsg(mensage);
             email.setSSL(true);
-            email.setAuthentication(email, senha);
+            email.setAuthentication(user, senha);
             email.send();
             System.out.println("Email enviado!");
             
