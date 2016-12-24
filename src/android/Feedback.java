@@ -75,9 +75,9 @@ public class Feedback extends CordovaPlugin {
         Properties props = new Properties();
         props.put("mail.smtp.auth", AUTH);
         props.put("mail.smtp.starttls.enable", START_TLS);
-        String mensage = args.getString(0);
-        String email = args.getString(1);
-        String senha = args.getString(2);
+        String mensage = this.args.getString(0);
+        String email = this.args.getString(1);
+        String senha = this.args.getString(2);
 
         Session session = Session.getInstance(props);
 
