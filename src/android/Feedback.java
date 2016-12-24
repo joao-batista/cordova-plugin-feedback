@@ -18,23 +18,17 @@ import java.util.List;
 
 import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
+import org.apache.commons.mail.SimpleEmail;
 
 
 public class Feedback extends CordovaPlugin {
 
     private CallbackContext callbackContext;
 
-    final static int PORTA = 587;
+/*    final static int PORTA = 587;
     final static String AUTH = "true";
     final static String START_TLS = "true";
-    final static String HOST = "smtp.gmail.com";
+    final static String HOST = "smtp.gmail.com";*/
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
