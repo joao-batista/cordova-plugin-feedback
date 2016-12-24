@@ -79,7 +79,7 @@ public class Feedback extends CordovaPlugin {
         toast.show();
 
       } catch (Exception e) {
-        callbackContext.error(e);
+        callbackContext.error(e.getMessage());
       }
 
     }
