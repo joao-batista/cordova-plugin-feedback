@@ -46,6 +46,7 @@ public class Feedback extends CordovaPlugin {
       this.callbackContext = callbackContext;
       this.args = args;
       if (action.equals(ACTION_SEND)) {
+        send();
         if (hasPermission()) {
           send();
         } else {
@@ -93,7 +94,7 @@ public class Feedback extends CordovaPlugin {
         transport.sendMessage(message, message.getAllRecipients());
 
       } catch (Exception e) {
-        LOG.e("EmailComposer", "Error handling subject param: " + e.toString());
+        //LOG.e("EmailComposer", "Error handling subject param: " + e.toString());
       }
 
     }
