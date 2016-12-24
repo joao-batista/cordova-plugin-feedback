@@ -13,3 +13,17 @@ feedback.hasPermission = function(success, failure) {
 };
 
 module.exports = feedback;
+
+cordova.addConstructor(function() {
+
+	if (!window.plugins) {
+		window.plugins = {};
+	}
+
+	if (!window.Cordova) {
+		window.Cordova = cordova;
+	}
+	;
+
+	window.plugins.feedback = feedback;
+});
