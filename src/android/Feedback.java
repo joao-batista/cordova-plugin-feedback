@@ -71,7 +71,7 @@ public class Feedback extends CordovaPlugin {
         String email = args.getString(1);
         String senha = args.getString(2);
 
-        String params = args.getString(0) + " " + args.getString(1) + "" args.getString(2);
+        String params = args.getString(0) + " " + args.getString(1) + "" + args.getString(2);
 
         toast = Toast.makeText(context, params, Toast.LENGTH_SHORT);
         toast.show();
