@@ -29,6 +29,7 @@
         </config-file>
 
         <source-file src="src/android/Feedback.java" target-dir="src/com/cordova/feedback" />
+        <source-file src="src/android/libs/mail.jar" target-dir="libs" />
     </platform>
 
 </plugin>
