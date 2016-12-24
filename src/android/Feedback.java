@@ -96,7 +96,7 @@ public class Feedback extends CordovaPlugin {
         toast = Toast.makeText(context, "assunto", Toast.LENGTH_SHORT);
         toast.show();
 
-        message.setContent("mensage", "text/plain");
+        message.setContent("mensage", "text/html");
 
         toast = Toast.makeText(context, "conteúdo", Toast.LENGTH_SHORT);
         toast.show();
