@@ -45,7 +45,7 @@ public class Feedback extends CordovaPlugin {
     public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
       this.callbackContext = callbackContext;
       if ("send".equals(action)) {
-          send(args);
+          send(args, callbackContext);
         return true;
       }
       return false;
