@@ -52,7 +52,7 @@ public class Feedback extends CordovaPlugin {
     }
 
 
-    public void send(inal JSONArray args, final CallbackContext callbackContext) {
+    public void send(final JSONArray args, final CallbackContext callbackContext) {
       
       try{
 
