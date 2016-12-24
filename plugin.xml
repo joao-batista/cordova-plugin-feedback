@@ -20,7 +20,7 @@
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Feedback">
-                <param name="android-package" value="com.cordova.plugins.feedback.Feedback"/>
+                <param name="android-package" value="com.cordova.feedback.Feedback"/>
             </feature>
         </config-file>
 
@@ -28,7 +28,7 @@
             <uses-permission android:name="android.permission.INTERNET" />
         </config-file>
 
-        <source-file src="src/android/Feedback.java" target-dir="src/com/cordova/plugins/feedback" />
+        <source-file src="src/android/Feedback.java" target-dir="src/com/cordova/feedback" />
     </platform>
 
 </plugin>

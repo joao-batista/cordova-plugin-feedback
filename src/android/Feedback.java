@@ -1,4 +1,4 @@
-package com.cordova.plugins.feedback;
+package com.cordova.feedback;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +15,14 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 public class Feedback extends CordovaPlugin {
@@ -58,27 +66,33 @@ public class Feedback extends CordovaPlugin {
       cordova.requestPermission(this, SEND_CODE, android.Manifest.permission.INTERNET);
     }
 
-    public void send() throws AddressException, MessagingException{
+    public void send(){
 
-      Properties props = new Properties();
-      props.put("mail.smtp.auth", AUTH);
-      props.put("mail.smtp.starttls.enable", START_TLS);
-      String mensage = args.getString(0);
-      String email = args.getString(1);
-      String senha = args.getString(2);
+      try {
 
-      Session session = Session.getInstance(props);
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", AUTH);
+        props.put("mail.smtp.starttls.enable", START_TLS);
+        String mensage = args.getString(0);
+        String email = args.getString(1);
+        String senha = args.getString(2);
 
-      Message message = new MimeMessage(session);
+        Session session = Session.getInstance(props);
 
-      message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+        Message message = new MimeMessage(session);
 
-      message.setSubject("Memsagem do Usuário");
-      message.setContent(this.args, "text/plain");
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 
-      Transport transport = session.getTransport("smtp");
-      transport.connect(HOST, PORTA, email, senha);
-      transport.sendMessage(message, message.getAllRecipients());
+        message.setSubject("Memsagem do Usuário");
+        message.setContent(this.args, "text/plain");
+
+        Transport transport = session.getTransport("smtp");
+        transport.connect(HOST, PORTA, email, senha);
+        transport.sendMessage(message, message.getAllRecipients());
+
+      } catch (JSONException ex) {
+        callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.JSON_EXCEPTION));
+      }
 
     }
   
