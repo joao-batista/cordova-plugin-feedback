@@ -87,6 +87,10 @@ public class Feedback extends CordovaPlugin {
         toast.show();
 
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+
+        toast = Toast.makeText(context, "endereço", Toast.LENGTH_SHORT);
+        toast.show();
+
         message.setSubject("Memsagem do Usuário");
         message.setContent(mensage, "text/plain");
 
