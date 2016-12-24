@@ -68,9 +68,11 @@ public class Feedback extends CordovaPlugin {
       cordova.requestPermission(this, SEND_CODE, android.Manifest.permission.INTERNET);
     }
 
-    public void send() throws AddressException, MessagingException{
+    public void send() {
 
-      Properties props = new Properties();
+      
+
+      /*Properties props = new Properties();
       props.put("mail.smtp.auth", AUTH);
       props.put("mail.smtp.starttls.enable", START_TLS);
       String mensage = args.getString(0);
@@ -88,7 +90,7 @@ public class Feedback extends CordovaPlugin {
 
       Transport transport = session.getTransport("smtp");
       transport.connect(HOST, PORTA, email, senha);
-      transport.sendMessage(message, message.getAllRecipients());
+      transport.sendMessage(message, message.getAllRecipients());*/
 
     }
   
