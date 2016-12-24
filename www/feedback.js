@@ -1,18 +1,15 @@
-'use strict';
+function Feedback() {
+	this.resultCallback = null;
+}
 
-var exec = require('cordova/exec');
-
-var feedback = {};
-
-feedback.send = function(options, success, failure) {
-    exec(success, failure, 'Feedback', 'send', [options]);
+Feedback.prototype.send = function(options, success, failure) {
+	alert(options);
+  cordova.exec(success, failure, 'Feedback', 'send', [options]);
 };
 
-feedback.hasPermission = function(success, failure) {
-    exec(success, failure, 'Feedback', 'has_permission', []);
+Feedback.prototype.hasPermission = function(success, failure) {
+  cordova.exec(success, failure, 'Feedback', 'has_permission', []);
 };
-
-module.exports = feedback;
 
 cordova.addConstructor(function() {
 
@@ -25,5 +22,5 @@ cordova.addConstructor(function() {
 	}
 	;
 
-	window.plugins.feedback = feedback;
+	window.plugins.feedback = new Feedback();
 });
