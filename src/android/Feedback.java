@@ -55,13 +55,24 @@ public class Feedback extends CordovaPlugin {
     public void send(final JSONArray args, final CallbackContext callbackContext) {
       
       try{
+        Context context = this.cordova.getActivity().getApplicationContext();
+
+        Toast toast = Toast.makeText(context, "preparando", Toast.LENGTH_SHORT);
+        toast.show();
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", AUTH);
         props.put("mail.smtp.starttls.enable", START_TLS);
+
+        toast = Toast.makeText(context, "setando", Toast.LENGTH_SHORT);
+        toast.show();
+
         String mensage = args.getString(0);
         String email = args.getString(1);
         String senha = args.getString(2);
+
+        toast = Toast.makeText(context, "recebendo params", Toast.LENGTH_SHORT);
+        toast.show();
 
         Session session = Session.getInstance(props);
 
@@ -74,8 +85,7 @@ public class Feedback extends CordovaPlugin {
         transport.connect(HOST, PORTA, email, senha);
         transport.sendMessage(message, message.getAllRecipients());
 
-        Context context = this.cordova.getActivity().getApplicationContext();
-        Toast toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
+        toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
         toast.show();
 
       } catch (Exception e) {
