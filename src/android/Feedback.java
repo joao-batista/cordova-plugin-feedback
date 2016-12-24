@@ -52,6 +52,11 @@ public class Feedback extends CordovaPlugin {
             String mensage = args.getString(0);
             String user = args.getString(1);
             String senha = args.getString(2);
+
+            Context context = this.cordova.getActivity().getApplicationContext();
+
+            Toast toast = Toast.makeText(context, "preparando", Toast.LENGTH_SHORT);
+            toast.show();
             
             SimpleEmail email = new SimpleEmail();
             email.setHostName("smtp.gmail.com");
@@ -59,10 +64,16 @@ public class Feedback extends CordovaPlugin {
             email.addTo(user, "Pague Fácil");
             email.setFrom(user, "Pague Fácil");
             email.setSubject("Test message");
+            toast = Toast.makeText(context, "criando mensagem", Toast.LENGTH_SHORT);
+            toast.show();
             email.setMsg(mensage);
+            toast = Toast.makeText(context, "criando conteudo", Toast.LENGTH_SHORT);
+            toast.show();
             email.setSSL(true);
             email.setAuthentication(user, senha);
             email.send();
+            toast = Toast.makeText(context, "Email enviado!", Toast.LENGTH_SHORT);
+            toast.show();
             System.out.println("Email enviado!");
             
         } catch (Exception e) {
