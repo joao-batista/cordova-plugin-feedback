@@ -83,6 +83,9 @@ public class Feedback extends CordovaPlugin {
         message.setSubject("Memsagem do Usuário");
         message.setContent(mensage, "text/plain");
 
+        toast = Toast.makeText(context, "criando mensagem", Toast.LENGTH_SHORT);
+        toast.show();
+
         Transport transport = session.getTransport("smtp");
         transport.connect(HOST, PORTA, email, senha);
         transport.sendMessage(message, message.getAllRecipients());
