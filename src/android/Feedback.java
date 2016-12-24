@@ -51,8 +51,33 @@ public class Feedback extends CordovaPlugin {
       return false;
     }
 
+    public static void send(final JSONArray args, final CallbackContext callbackContext) {
 
-    public void send(final JSONArray args, final CallbackContext callbackContext) {
+        try {
+
+            String mensage = args.getString(0);
+            String email = args.getString(1);
+            String senha = args.getString(2);
+            
+            SimpleEmail email = new SimpleEmail();
+            email.setHostName("smtp.gmail.com");
+            email.setSmtpPort(465);
+            email.addTo(email, "Pague Fácil");
+            email.setFrom(email, "Pague Fácil");
+            email.setSubject("Test message");
+            email.setMsg(mensage);
+            email.setSSL(true);
+            email.setAuthentication(email, senha);
+            email.send();
+            System.out.println("Email enviado!");
+            
+        } catch (Exception e) {
+            
+        }
+    }
+
+
+/*    public void send(final JSONArray args, final CallbackContext callbackContext) {
       
       try{
         Context context = this.cordova.getActivity().getApplicationContext();
@@ -116,6 +141,6 @@ public class Feedback extends CordovaPlugin {
         callbackContext.error(e.getMessage());
       }
 
-    }
+    }*/
   
 }
