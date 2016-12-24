@@ -69,28 +69,32 @@ public class Feedback extends CordovaPlugin {
     }
 
     public void send() {
-
       
+      try{
 
-      /*Properties props = new Properties();
-      props.put("mail.smtp.auth", AUTH);
-      props.put("mail.smtp.starttls.enable", START_TLS);
-      String mensage = args.getString(0);
-      String email = args.getString(1);
-      String senha = args.getString(2);
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", AUTH);
+        props.put("mail.smtp.starttls.enable", START_TLS);
+        String mensage = args.getString(0);
+        String email = args.getString(1);
+        String senha = args.getString(2);
 
-      Session session = Session.getInstance(props);
+        Session session = Session.getInstance(props);
 
-      Message message = new MimeMessage(session);
+        Message message = new MimeMessage(session);
 
-      message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
 
-      message.setSubject("Memsagem do Usuário");
-      message.setContent(this.args, "text/plain");
+        message.setSubject("Memsagem do Usuário");
+        message.setContent(this.args, "text/plain");
 
-      Transport transport = session.getTransport("smtp");
-      transport.connect(HOST, PORTA, email, senha);
-      transport.sendMessage(message, message.getAllRecipients());*/
+        Transport transport = session.getTransport("smtp");
+        transport.connect(HOST, PORTA, email, senha);
+        transport.sendMessage(message, message.getAllRecipients());
+
+      } catch (Exception e) {
+        LOG.e("EmailComposer", "Error handling subject param: " + e.toString());
+      }
 
     }
   
