@@ -53,19 +53,23 @@ public class Feedback extends CordovaPlugin {
       return false;
     }
 
-    public void send(final JSONArray args, final CallbackContext callbackContext) throws EmailException {
+    public void send(final JSONArray args, final CallbackContext callbackContext) {
     
-       JSONObject props = args.getJSONObject(0);
-       SimpleEmail email = setEmailProperties(props);
-       /*email.setHostName("smtp.gmail.com");
-       email.setSmtpPort(465);
-       email.addTo("xxx@xxx.com", "Jose");
-       email.setFrom("seuemail@seuprovedor.com", "Seu nome");
-       email.setSubject("Test message");
-       email.setMsg("This is a simple test of commons-email");
-       email.setSSL(true);
-       email.setAuthentication("username", "senha");*/
-       email.send();
+        try {
+           JSONObject props = args.getJSONObject(0);
+           SimpleEmail email = setEmailProperties(props);
+           /*email.setHostName("smtp.gmail.com");
+           email.setSmtpPort(465);
+           email.addTo("xxx@xxx.com", "Jose");
+           email.setFrom("seuemail@seuprovedor.com", "Seu nome");
+           email.setSubject("Test message");
+           email.setMsg("This is a simple test of commons-email");
+           email.setSSL(true);
+           email.setAuthentication("username", "senha");*/
+           email.send();
+        } catch (Exception e) {
+
+        }
     }
 
     public SimpleEmail setEmailProperties (JSONObject params) throws JSONException {
