@@ -18,17 +18,23 @@ import java.util.List;
 
 import java.util.Properties;
 
-import org.apache.commons.mail.SimpleEmail;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 public class Feedback extends CordovaPlugin {
 
     private CallbackContext callbackContext;
 
-/*    final static int PORTA = 587;
+    final static int PORTA = 587;
     final static String AUTH = "true";
     final static String START_TLS = "true";
-    final static String HOST = "smtp.gmail.com";*/
+    final static String HOST = "smtp.gmail.com";
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -45,44 +51,8 @@ public class Feedback extends CordovaPlugin {
       return false;
     }
 
-    public static void send(final JSONArray args, final CallbackContext callbackContext) {
 
-        try {
-
-            String mensage = args.getString(0);
-            String user = args.getString(1);
-            String senha = args.getString(2);
-
-            Context context = this.cordova.getActivity().getApplicationContext();
-
-            Toast toast = Toast.makeText(context, "preparando", Toast.LENGTH_SHORT);
-            toast.show();
-            
-            SimpleEmail email = new SimpleEmail();
-            email.setHostName("smtp.gmail.com");
-            email.setSmtpPort(465);
-            email.addTo(user, "Pague Fácil");
-            email.setFrom(user, "Pague Fácil");
-            email.setSubject("Test message");
-            toast = Toast.makeText(context, "criando mensagem", Toast.LENGTH_SHORT);
-            toast.show();
-            email.setMsg(mensage);
-            toast = Toast.makeText(context, "criando conteudo", Toast.LENGTH_SHORT);
-            toast.show();
-            email.setSSL(true);
-            email.setAuthentication(user, senha);
-            email.send();
-            toast = Toast.makeText(context, "Email enviado!", Toast.LENGTH_SHORT);
-            toast.show();
-            System.out.println("Email enviado!");
-            
-        } catch (Exception e) {
-            
-        }
-    }
-
-
-/*    public void send(final JSONArray args, final CallbackContext callbackContext) {
+    public void send(final JSONArray args, final CallbackContext callbackContext) {
       
       try{
         Context context = this.cordova.getActivity().getApplicationContext();
@@ -146,6 +116,6 @@ public class Feedback extends CordovaPlugin {
         callbackContext.error(e.getMessage());
       }
 
-    }*/
+    }
   
 }
