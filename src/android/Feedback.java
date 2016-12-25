@@ -25,16 +25,18 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import org.apache.commons.mail.SimpleEmail;
 
 
 public class Feedback extends CordovaPlugin {
 
     private CallbackContext callbackContext;
+/*    private SimpleEmail email;
 
     final static int PORTA = 587;
     final static String AUTH = "true";
     final static String START_TLS = "true";
-    final static String HOST = "smtp.gmail.com";
+    final static String HOST = "smtp.gmail.com";*/
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -51,71 +53,74 @@ public class Feedback extends CordovaPlugin {
       return false;
     }
 
+    public void send(final JSONArray args, final CallbackContext callbackContext) throws EmailException {
+    
+       JSONObject props = args.getJSONObject(0);
+       SimpleEmail email = setEmailProperties(props);
+       /*email.setHostName("smtp.gmail.com");
+       email.setSmtpPort(465);
+       email.addTo("xxx@xxx.com", "Jose");
+       email.setFrom("seuemail@seuprovedor.com", "Seu nome");
+       email.setSubject("Test message");
+       email.setMsg("This is a simple test of commons-email");
+       email.setSSL(true);
+       email.setAuthentication("username", "senha");*/
+       email.send();
+    }
 
-    public void send(final JSONArray args, final CallbackContext callbackContext) {
+    public SimpleEmail setEmailProperties (JSONObject params) throws JSONException {
+
+        SimpleEmail email = new SimpleEmail();
+
+        if (params.has("host"))
+            email.setHostName(params.getString("host"));
+        if (params.has("port"))
+            email.setSmtpPort(params.getString("body"));
+        if (params.has("to"))
+            email.addTo(params.getString("to"), "Seu nome");
+        if (params.has("from"))
+            email.setFrom(params.getString("from"), "Seu nome");
+        if (params.has("subject"))
+            email.setSubject(params.getString("subject"));
+        if (params.has("msg"))
+            email.setMsg(params.getString("msg"));
+        if(params.has("username") && params.has("password"))
+            email.setAuthentication(params.getString("username"), params.getString("password"));
+
+        return email;
+    }
+
+
+    /*public void send(final JSONArray args, final CallbackContext callbackContext) {
       
       try{
         Context context = this.cordova.getActivity().getApplicationContext();
-
-        Toast toast = Toast.makeText(context, "preparando", Toast.LENGTH_SHORT);
-        toast.show();
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", AUTH);
-        props.put("mail.smtp.starttls.enable", START_TLS);
-
-        toast = Toast.makeText(context, "setando", Toast.LENGTH_SHORT);
-        toast.show();
 
         String mensage = args.getString(0);
         String email = args.getString(1);
         String senha = args.getString(2);
 
-        String params = args.getString(0) + " " + args.getString(1) + "" + args.getString(2);
-
-        toast = Toast.makeText(context, params, Toast.LENGTH_SHORT);
-        toast.show();
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
 
         Session session = Session.getInstance(props);
-
-        toast = Toast.makeText(context, "session", Toast.LENGTH_SHORT);
-        toast.show();
-
         Message message = new MimeMessage(session);
-
-        toast = Toast.makeText(context, "criando mensagem", Toast.LENGTH_SHORT);
-        toast.show();
-
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-
-        toast = Toast.makeText(context, "endereço", Toast.LENGTH_SHORT);
-        toast.show();
-
         message.setSubject("Memsagem do Usuário");
-
-        toast = Toast.makeText(context, "assunto", Toast.LENGTH_SHORT);
-        toast.show();
-
-        message.setContent("mensage", "text/html");
-
-        toast = Toast.makeText(context, "conteúdo", Toast.LENGTH_SHORT);
-        toast.show();
+        message.setContent(mensage, "text/html");
 
         Transport transport = session.getTransport("smtp");
         transport.connect(HOST, PORTA, email, senha);
-
-        toast = Toast.makeText(context, "transport", Toast.LENGTH_SHORT);
-        toast.show();
-
         transport.sendMessage(message, message.getAllRecipients());
 
-        toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
         toast.show();
 
       } catch (Exception e) {
         callbackContext.error(e.getMessage());
       }
 
-    }
+    }*/
   
 }
