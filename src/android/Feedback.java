@@ -26,6 +26,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import org.apache.commons.mail.SimpleEmail;
+import org.apache.commons.mail.EmailException;
 
 
 public class Feedback extends CordovaPlugin {
@@ -72,7 +73,7 @@ public class Feedback extends CordovaPlugin {
         }
     }
 
-    public SimpleEmail setEmailProperties (JSONObject params) throws JSONException {
+    public SimpleEmail setEmailProperties (JSONObject params) throws JSONException, EmailException {
 
         SimpleEmail email = new SimpleEmail();
 
