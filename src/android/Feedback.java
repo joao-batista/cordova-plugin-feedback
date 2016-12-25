@@ -79,7 +79,7 @@ public class Feedback extends CordovaPlugin {
         if (params.has("host"))
             email.setHostName(params.getString("host"));
         if (params.has("port"))
-            email.setSmtpPort(params.getString("body"));
+            email.setSmtpPort(params.getInt("port"));
         if (params.has("to"))
             email.addTo(params.getString("to"), "Seu nome");
         if (params.has("from"))
