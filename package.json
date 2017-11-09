@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-feedback",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Plugin for Cordova to easily send Email. Available for Android.",
   "cordova": {
     "id": "cordova-plugin-feedback",
