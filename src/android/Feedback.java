@@ -68,7 +68,7 @@ public class Feedback extends CordovaPlugin {
       Message message = new MimeMessage(session);
       message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
       message.setSubject("Memsagem do Usuário");
-      message.setContent("mensage", "text/html");
+      message.setContent(mensage, "text/html");
 
       Transport transport = session.getTransport("smtp");
       transport.connect(HOST, PORTA, email, senha);
