@@ -77,6 +77,8 @@ public class Feedback extends CordovaPlugin {
       Context context = this.cordova.getActivity().getApplicationContext();
       Toast toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
       toast.show();
+      
+      callbackContext.success("enviado");
 
     } catch (Exception e) {
       callbackContext.error(e.getMessage());
