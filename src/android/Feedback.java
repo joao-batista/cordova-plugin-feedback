@@ -60,14 +60,15 @@ public class Feedback extends CordovaPlugin {
       props.put("mail.smtp.auth", AUTH);
       props.put("mail.smtp.starttls.enable", START_TLS);
 
-      String mensage = args.getString(0);
-      String email   = args.getString(1);
-      String senha   = args.getString(2);
+      String titulo  = args.getString(0);
+      String mensage = args.getString(1);
+      String email   = args.getString(2);
+      String senha   = args.getString(3);
 
       Session session = Session.getInstance(props);
       Message message = new MimeMessage(session);
       message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-      message.setSubject("Memsagem do Usuário");
+      message.setSubject(titulo);
       message.setContent(mensage, "text/html");
 
       Transport transport = session.getTransport("smtp");
