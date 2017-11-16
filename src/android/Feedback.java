@@ -74,14 +74,17 @@ public class Feedback extends CordovaPlugin {
       transport.connect(HOST, PORTA, email, senha);
       transport.sendMessage(message, message.getAllRecipients());
 
-      //Context context = this.cordova.getActivity().getApplicationContext();
-      //Toast toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
-      //toast.show();
+      Context context = this.cordova.getActivity().getApplicationContext();
+      Toast toast = Toast.makeText(context, "email enviado", Toast.LENGTH_SHORT);
+      toast.show();
       
       callbackContext.success("enviado");
 
     } catch (Exception e) {
-      callbackContext.error(e.getMessage());
+      Context context = this.cordova.getActivity().getApplicationContext();
+      Toast toast = Toast.makeText(context, "erro ao enviar, tente mais tarde", Toast.LENGTH_SHORT);
+      toast.show();
+      callbackContext.error("não enviado");
     }
 
   }
